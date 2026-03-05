@@ -17,19 +17,28 @@ root.rowconfigure(0, weight=1)
 # -------------------------------------------------------------------
 
 
+# -----------------------
+#   Name     |  Phone
+# -----------------------
+
+
 def createContact(name, phone):
-    container = ttk.Frame(list_frame)
-    container.pack(fill="x", side="top")
+    contact_container = ttk.Frame(list_frame)
+    contact_container.pack(fill="x", side="top")
 
-    container.columnconfigure(0, weight=1)
-    container.columnconfigure(1, weight=1)
+    # column 0, column 1 for name & phone
+    contact_container.columnconfigure(0, weight=1)
+    contact_container.columnconfigure(1, weight=1)
 
-    item = ttk.Label(container, text=phone)
-    item.grid(row=0, column=1, sticky="e")
-
-    item = ttk.Label(container, text=name)
+    # name
+    item = ttk.Label(contact_container, text=name)
     item.grid(row=0, column=0, sticky="w")
 
+    # phone
+    item = ttk.Label(contact_container, text=phone)
+    item.grid(row=0, column=1, sticky="e")
+
+    # Separator - Horizontal Line
     ttk.Separator(list_frame, orient="horizontal").pack(fill="x", pady=5, padx=1)
 
 
