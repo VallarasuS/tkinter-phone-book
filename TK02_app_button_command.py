@@ -4,38 +4,45 @@ from tkinter import Tk, ttk
 from TK00_app_window import create_root_window
 
 
-def create_widgets(root):
-
-    # -------------------------------------------------------------------
-    #                       LABEL / ENTRY / BUTTON
-    # -------------------------------------------------------------------
-
-    def on_add_button_clicked():
-        print(name.get())
-        print(phone.get())
-
-    # -------------------------------------------------------------------
+def create_widgets(root, name_var, phone_var, button_clicked):
 
     # label - display text
     name_label = ttk.Label(root, text="Name: ")
     name_label.pack(padx=3, pady=3)
 
     # entry - input text
-    name = ttk.Entry(root, text="")
+    name = ttk.Entry(root, text="", textvariable=name_var)
     name.pack(padx=3, pady=3)
 
     phone_label = ttk.Label(root, text="Phone: ")
     phone_label.pack(padx=3, pady=3)
 
-    phone = ttk.Entry(root, text="")
+    phone = ttk.Entry(root, text="", textvariable=phone_var)
     phone.pack(padx=3, pady=3)
 
     # button
-    text = ttk.Button(root, text="Add", command=on_add_button_clicked)
+    text = ttk.Button(root, text="Add", command=button_clicked)
     text.pack(pady=10)
 
 
+# -------------------------------------------------------------------
+#                       LABEL / ENTRY / BUTTON
+# -------------------------------------------------------------------
+
+
+def on_add_button_clicked():
+    print(name_var.get())
+    print(phone_var.get())
+
+
+# -------------------------------------------------------------------
+
+
 if __name__ == "__main__":
+
     root = create_root_window()
-    create_widgets(root)
+
+    name_var = StringVar()
+    phone_var = StringVar()
+    create_widgets(root, name_var, phone_var, on_add_button_clicked)
     root.mainloop()

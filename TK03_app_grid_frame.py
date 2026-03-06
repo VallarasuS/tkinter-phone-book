@@ -47,9 +47,17 @@ def create_grid_frame(root):
     return (root, left_frame, right_frame)
 
 
+def on_add_button_clicked():
+    print(name_var.get())
+    print(phone_var.get())
+
+
 if __name__ == "__main__":
 
     root = create_root_window()
     root, left_frame, right_frame = create_grid_frame(root)
-    create_widgets(right_frame)
+
+    name_var = StringVar()
+    phone_var = StringVar()
+    create_widgets(right_frame, name_var, phone_var, on_add_button_clicked)
     root.mainloop()

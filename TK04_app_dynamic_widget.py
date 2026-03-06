@@ -14,7 +14,7 @@ from TK03_app_grid_frame import create_grid_frame
 # -----------------------
 
 
-def createContact(root, name, phone):
+def create_contact_item(root, name, phone):
     contact_container = ttk.Frame(root)
     contact_container.pack(fill="x", side="top")
 
@@ -34,15 +34,16 @@ def createContact(root, name, phone):
     ttk.Separator(root, orient="horizontal").pack(fill="x", pady=5, padx=1)
 
 
-# todo: create a string var, pass ref
-def addContact(root):
-    createContact(root, name.get(), phone.get())
-
-
 if __name__ == "__main__":
 
     root = create_root_window()
-    root, left_frame, right_frame = create_grid_frame(root)
-    create_widgets(right_frame)
-    addContact(left_frame)
+    root, left, right = create_grid_frame(root)
+
+    name_var = StringVar()
+    phone_var = StringVar()
+
+    def on_add_button_clicked():
+        create_contact_item(left, name_var.get(), phone_var.get())
+
+    create_widgets(right, name_var, phone_var, on_add_button_clicked)
     root.mainloop()
