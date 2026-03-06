@@ -29,9 +29,23 @@ def quit():
 
 
 def export():
+
+    # with -> close the file automatically
     with open(r"contacts.txt", "w") as file:
-        contacts = [f"{name},{phone}\n" for (name, phone) in contacts_list]
-        file.writelines(contacts)
+
+        # contacts = [f"{name},{phone}\n" for (name, phone) in contacts_list]
+        # file.writelines(contacts)
+
+        for name, phone in contacts_list:
+            file.write(f"{name},{phone}\n")
+
+
+# List Comprehension
+# numbers = [1, 2, 3, 4, 5]
+# for i in numbers:
+#     print(i * 2)
+
+# [i * 2 for i in numbers]
 
 
 def build_menu(parent):

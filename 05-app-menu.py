@@ -15,13 +15,14 @@ root.rowconfigure(0, weight=1)
 #                       WIDGET
 # -------------------------------------------------------------------
 
-# Create and attach Menubar to window
-menu = Menu(root)
-root.config(menu=menu)
-
 
 def quit():
     root.quit()
+
+
+# Create and attach Menubar to window
+menu = Menu(root)
+root.config(menu=menu)
 
 
 # Create top level File Menu
@@ -31,6 +32,7 @@ menu.add_cascade(label="File", menu=file)
 # Create commands under tile
 file.add_command(label="Import")
 file.add_command(label="Export")
+file.add_separator()
 file.add_command(label="Quit", command=quit)
 
 edit = Menu(menu, tearoff=0)

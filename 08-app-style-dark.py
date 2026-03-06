@@ -50,7 +50,7 @@ def create_form_widget(parent):
     phone = ttk.Entry(parent, text="", textvariable=phoneVar)
     phone.pack(anchor="se", padx=3, pady=3)
 
-    text = ttk.Button(parent, text="Add", command=addContact)
+    text = ttk.Button(parent, text="Add", command=addContact, style="Bright.TButton")
     text.pack(anchor="se", pady=10)
 
 
@@ -109,11 +109,12 @@ nameVar = StringVar()
 phoneVar = StringVar()
 
 # -------------------------------------------------------------------
-#                       VARIABLE
+#                       STYLES
 # -------------------------------------------------------------------
 
 style = ttk.Style()
 style.configure("Dark.TFrame", background="#000000")
+style.configure("Bright.TButton", background="#FFD45A", foreground="#FF0000")
 
 style.configure("Dark.TLabelframe", background="#16181c", bordercolor="#00ff9d")
 style.configure("Dark.TLabelframe.Label", background="#16181c", foreground="#e7e9ea")

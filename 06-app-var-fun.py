@@ -83,7 +83,17 @@ def create_root_layout():
 
 
 def addContact():
-    createContact(list_frame, nameVar.get(), phoneVar.get())
+
+    name = nameVar.get()
+    phone = phoneVar.get()
+
+    if name == "" or phone == "":
+        return
+
+    createContact(list_frame, name, phone)
+
+    nameVar.set("")
+    phoneVar.set("")
 
 
 root = create_window()
