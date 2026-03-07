@@ -16,7 +16,7 @@ To build an EXE for distribution
 
 ```shell
 >>> python -m pip install PyInstaller
->>> PyInstaller - w 08-app-menu-export.py
+>>> PyInstaller -w 08-app-menu-export.py
 ```
 
 # References
