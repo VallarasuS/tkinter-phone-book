@@ -37,11 +37,12 @@ def create_contact_item(root, name, phone):
 if __name__ == "__main__":
 
     root = create_root_window()
-    root, left, right = create_grid_frame(root)
+    layout, left, right = create_grid_frame(root)
 
     # -------------------------------------------------------------------
     #                       VARIABLE
     # -------------------------------------------------------------------
+
     name_var = StringVar()
     phone_var = StringVar()
 

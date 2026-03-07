@@ -43,7 +43,7 @@ def create_menu(root):
 if __name__ == "__main__":
 
     root = create_root_window()
-    root, left, right = create_grid_frame(root)
+    layout, left, right = create_grid_frame(root)
     create_menu(root)
 
     name_var = StringVar()

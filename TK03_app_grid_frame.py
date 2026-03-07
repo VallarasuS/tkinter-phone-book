@@ -44,7 +44,7 @@ def create_grid_frame(root):
     right_frame.rowconfigure(0, weight=1)
     right_frame.columnconfigure(0, weight=1)
 
-    return (root, left_frame, right_frame)
+    return (layout, left_frame, right_frame)
 
 
 def on_add_button_clicked():
@@ -55,7 +55,7 @@ def on_add_button_clicked():
 if __name__ == "__main__":
 
     root = create_root_window()
-    root, left_frame, right_frame = create_grid_frame(root)
+    layout, left_frame, right_frame = create_grid_frame(root)
 
     name_var = StringVar()
     phone_var = StringVar()

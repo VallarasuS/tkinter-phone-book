@@ -1,63 +1,46 @@
 from tkinter import *
 from tkinter import Tk, ttk
-import tkinter.font as tkfont
 
+from TK00_app_window import create_root_window
+from TK02_app_button_command import create_widgets
+from TK03_app_grid_frame import create_grid_frame
+from TK04_app_dynamic_widget import create_contact_item
 
 # -------------------------------------------------------------------
-#                               EXPORT
+#                       Export
 # -------------------------------------------------------------------
+
+# Keep contacts in list and write to file when export clicked
 
 contacts_list = []
 
+
+def on_export():
+
+    contacts_csv = [f"{name},{phone}" for (name, phone) in contacts_list]
+
+    try:
+        with open(r"contacts.csv", "w") as file:
+            file.writelines(contacts_csv)
+    except Exception:
+        print("Error: Something went wrong")
+
+
 # -------------------------------------------------------------------
 
 
-def create_window():
-    # create instance of a window, root window to start with
-    root = Tk()
-    root.title("Phone Book")  # sets title to "Phone Book"
-    root.geometry("800x500")  # sets window width x height to 800 x 500
+def create_menu(root):
 
-    # configure root window to have single column
-    root.columnconfigure(0, weight=1)
-    root.rowconfigure(0, weight=1)
-    return root
+    def quit():
+        root.quit()
 
+    # Create and attach Menubar to window
+    menu = Menu(root)
+    root.config(menu=menu)
 
-def quit():
-    root.quit()
-
-
-def export():
-
-    # with -> close the file automatically
-    with open(r"contacts.txt", "w") as file:
-
-        # contacts = [f"{name},{phone}\n" for (name, phone) in contacts_list]
-        # file.writelines(contacts)
-
-        for name, phone in contacts_list:
-            file.write(f"{name},{phone}\n")
-
-
-# List Comprehension
-# numbers = [1, 2, 3, 4, 5]
-# for i in numbers:
-#     print(i * 2)
-
-# [i * 2 for i in numbers]
-
-
-def build_menu(parent):
-    menu = Menu(parent)
-    parent.config(menu=menu)
-
+    # Create top level File Menu
     file = Menu(menu, tearoff=0)
     menu.add_cascade(label="File", menu=file)
-
-    file.add_command(label="Import")
-    file.add_command(label="Export", command=export)
-    file.add_command(label="Quit", command=quit)
 
     edit = Menu(menu, tearoff=0)
     menu.add_cascade(label="Edit", menu=edit)
@@ -65,98 +48,28 @@ def build_menu(parent):
     about = Menu(menu, tearoff=0)
     menu.add_cascade(label="About", menu=about)
 
+    # Create commands under File
+    file.add_command(label="Import")
+    file.add_command(label="Export", command=on_export)
+    file.add_separator()
+    file.add_command(label="Quit", command=quit)
 
-def create_form_widget(parent):
-    name_label = ttk.Label(parent, text="Name: ", style="Dark.TLabel")
-    name_label.pack(anchor="nw", padx=3, pady=3)
-
-    name = ttk.Entry(parent, text="", textvariable=nameVar)
-    name.pack(anchor="se", padx=3, pady=3)
-
-    phone_label = ttk.Label(parent, text="Phone: ", style="Dark.TLabel")
-    phone_label.pack(anchor="w", padx=3, pady=3)
-
-    phone = ttk.Entry(parent, text="", textvariable=phoneVar)
-    phone.pack(anchor="se", padx=3, pady=3)
-
-    text = ttk.Button(parent, text="Add", command=addContact)
-    text.pack(anchor="se", pady=10)
-
-
-def createContact(parent, name, phone):
-
-    contacts_list.append((name, phone))
-
-    container = ttk.Frame(parent, style="InLineDark.TFrame")
-    container.pack(fill="x", side="top")
-
-    container.columnconfigure(0, weight=1)
-    container.columnconfigure(1, weight=1)
-
-    item = ttk.Label(container, text=phone, style="Dark.TLabel")
-    item.grid(row=0, column=1, sticky="e")
-
-    item = ttk.Label(container, text=name, style="Dark.TLabel")
-    item.grid(row=0, column=0, sticky="w")
-
-    ttk.Separator(parent, orient="horizontal").pack(fill="x", pady=5, padx=1)
-
-
-def create_root_layout():
-    # layout frame
-    layout = ttk.Frame(root, padding=3, style="Dark.TFrame")
-    layout.grid(row=0, column=0, sticky="nsew")
-
-    # two columns of equal weight
-    layout.columnconfigure(0, weight=1)
-    layout.columnconfigure(1, weight=1)
-    layout.rowconfigure(0, weight=1)
-    return layout
-
-
-def addContact():
-    createContact(list_frame, nameVar.get(), phoneVar.get())
-
-
-root = create_window()
-build_menu(root)
-layout = create_root_layout()
-
-# column 0 - List of Contacts
-list_frame = ttk.LabelFrame(
-    layout, padding=5, text="Contact List", style="Dark.TLabelframe"
-)
-list_frame.grid(row=0, column=0, sticky="nsew", padx=3, pady=3)
-
-# Column 1 - Add Contact
-formFrame = ttk.LabelFrame(
-    layout, padding=5, text="Add Contact", style="Dark.TLabelframe"
-)
-formFrame.grid(row=0, column=1, sticky="nw", padx=3, pady=3)
-formFrame.rowconfigure(0, weight=1)
-formFrame.columnconfigure(0, weight=1)
-
-
-nameVar = StringVar()
-phoneVar = StringVar()
-
-# -------------------------------------------------------------------
-#                               STYLE
-# -------------------------------------------------------------------
-
-style = ttk.Style()
-style.configure("Dark.TFrame", background="#000000")
-
-style.configure("Dark.TLabelframe", background="#16181c", bordercolor="#00ff9d")
-style.configure("Dark.TLabelframe.Label", background="#16181c", foreground="#e7e9ea")
-style.configure("InLineDark.TFrame", background="#16181c")
-
-
-style.configure("Dark.TLabel", background="#16181c", foreground="#e7e9ea")
 
 # -------------------------------------------------------------------
 
-create_form_widget(formFrame)
 
-# call the main loop, displays window and runs the loop till closed.
-root.mainloop()
+if __name__ == "__main__":
+
+    root = create_root_window()
+    create_menu(root)
+    layout, left, right = create_grid_frame(root)
+
+    name_var = StringVar()
+    phone_var = StringVar()
+
+    def on_add_button_clicked():
+        contacts_list.append((name_var.get(), phone_var.get()))
+        create_contact_item(left, name_var.get(), phone_var.get())
+
+    create_widgets(right, name_var, phone_var, on_add_button_clicked)
+    root.mainloop()
