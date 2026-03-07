@@ -39,8 +39,13 @@ if __name__ == "__main__":
     root = create_root_window()
     root, left, right = create_grid_frame(root)
 
+    # -------------------------------------------------------------------
+    #                       VARIABLE
+    # -------------------------------------------------------------------
     name_var = StringVar()
     phone_var = StringVar()
+
+    # -------------------------------------------------------------------
 
     def on_add_button_clicked():
         create_contact_item(left, name_var.get(), phone_var.get())
