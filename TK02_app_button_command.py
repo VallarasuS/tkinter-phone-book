@@ -8,21 +8,21 @@ def create_widgets(root, name_var, phone_var, button_clicked):
 
     # label - display text
     name_label = ttk.Label(root, text="Name: ")
-    name_label.pack(padx=3, pady=3)
+    name_label.pack(padx=3, pady=3, anchor="w")
 
     # entry - input text
     name = ttk.Entry(root, text="", textvariable=name_var)
-    name.pack(padx=3, pady=3)
+    name.pack(padx=3, pady=3, anchor="w")
 
     phone_label = ttk.Label(root, text="Phone: ")
-    phone_label.pack(padx=3, pady=3)
+    phone_label.pack(padx=3, pady=3, anchor="w")
 
     phone = ttk.Entry(root, text="", textvariable=phone_var)
-    phone.pack(padx=3, pady=3)
+    phone.pack(padx=3, pady=3, anchor="w")
 
     # button
     text = ttk.Button(root, text="Add", command=button_clicked)
-    text.pack(pady=10)
+    text.pack(padx=3, pady=3, anchor="e")
 
 
 # -------------------------------------------------------------------
