@@ -57,7 +57,14 @@ if __name__ == "__main__":
     root = create_root_window()
     layout, left_frame, right_frame = create_grid_frame(root)
 
+    # -------------------------------------------------------------------
+    #                       VARIABLE
+    # -------------------------------------------------------------------
+
     name_var = StringVar()
     phone_var = StringVar()
+
+    # -------------------------------------------------------------------
+
     create_widgets(right_frame, name_var, phone_var, on_add_button_clicked)
     root.mainloop()

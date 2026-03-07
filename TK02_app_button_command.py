@@ -26,7 +26,7 @@ def create_widgets(root, name_var, phone_var, button_clicked):
 
 
 # -------------------------------------------------------------------
-#                       LABEL / ENTRY / BUTTON
+#                       Button Event / Command
 # -------------------------------------------------------------------
 
 

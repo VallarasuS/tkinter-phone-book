@@ -9,9 +9,10 @@ from TK03_app_grid_frame import create_grid_frame
 #                       WIDGET
 # -------------------------------------------------------------------
 
-# -----------------------
-#   Name     |  Phone
-# -----------------------
+# ------------------------------------
+#   Name            |   Phone
+#   row 0, col 0    |   row 0, col 1
+# ------------------------------------
 
 
 def create_contact_item(root, name, phone):
