@@ -2,7 +2,8 @@
 
 ## Phone Book
 
-<img width="593" height="344" alt="Phone-Book" src="https://github.com/user-attachments/assets/215a14fd-3df8-4f3b-af49-39cf68428834" />
+<img width="416" height="199" alt="Capture" src="https://github.com/user-attachments/assets/e4fa3a9a-f02e-420e-8640-7eb5a024dbaf" />
+
 
 ### Development
 
