@@ -17,7 +17,7 @@ To build an EXE for distribution
 
 ```shell
 >>> python -m pip install PyInstaller
->>> PyInstaller -w TK07_app_menu_export.py
+>>> PyInstaller --onefile --windowed TK07_app_menu_export.py
 ```
 
 ## Prerequisite
